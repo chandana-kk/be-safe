@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #1A1B25;
+  --color-charcoal-light: #252632;
+  --color-charcoal-lighter: #2E2F3D;
+  --color-offwhite: #FAF9F6;
+  --color-coral: #FF4D6D;
+  --color-coral-dark: #E63956;
+  --color-accent: #6C63FF;
+  --color-accent-soft: #8B84FF;
+  --color-teal: #4ECDC4;
+  --color-success: #2ECC71;
+  --color-warning: #F39C12;
+
+  --font-sans: 'Manrope', system-ui, sans-serif;
+
+  --radius-card: 20px;
+  --radius-button: 16px;
+  --radius-pill: 9999px;
+
+  --shadow-soft: 0 4px 24px rgba(26, 27, 37, 0.08);
+  --shadow-glow-coral: 0 0 40px rgba(255, 77, 109, 0.35);
+  --shadow-glow-accent: 0 0 30px rgba(108, 99, 255, 0.25);
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-offwhite text-charcoal antialiased;
+    margin: 0;
+    min-height: 100dvh;
+    overscroll-behavior: none;
+  }
+
+  .dark body,
+  body.dark-mode {
+    @apply bg-charcoal text-offwhite;
+  }
+
+  html.dark body {
+    @apply bg-charcoal text-offwhite;
+  }
+
+  #root {
+    min-height: 100dvh;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: rgba(108, 99, 255, 0.25);
+  }
+}
+
+@layer utilities {
+  .safe-area-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-area-top {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #6C63FF, #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    @apply backdrop-blur-xl bg-white/70 dark:bg-charcoal-light/70;
+  }
+
+  .card {
+    @apply rounded-[var(--radius-card)] bg-white dark:bg-charcoal-light shadow-[var(--shadow-soft)] border border-charcoal/5 dark:border-white/5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-[var(--radius-button)] bg-accent text-white font-semibold px-6 py-3.5 transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
+  }
+
+  .btn-coral {
+    @apply inline-flex items-center justify-center gap-2 rounded-[var(--radius-button)] bg-coral text-white font-semibold px-6 py-3.5 transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-[var(--radius-button)] bg-charcoal/5 dark:bg-white/10 font-medium px-6 py-3.5 transition-all active:scale-[0.98];
+  }
+
+  .sos-pulse {
+    animation: sos-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes sos-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.4); }
+    50% { transform: scale(1.03); box-shadow: 0 0 0 20px rgba(255, 77, 109, 0); }
+  }
+
+  .recording-dot {
+    animation: recording-blink 1.2s ease-in-out infinite;
+  }
+
+  @keyframes recording-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .leaflet-container {
+    font-family: var(--font-sans);
+    border-radius: var(--radius-card);
+    z-index: 0;
+  }
+}
+
+/* Hide default leaflet attribution on small screens — OSM credit in badge */
+.leaflet-control-attribution {
+  font-size: 9px !important;
+}
