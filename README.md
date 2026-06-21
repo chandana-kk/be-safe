@@ -72,6 +72,6 @@ All critical paths have graceful fallbacks:
 - No contacts → Prompt to add before SOS fires
 - Missing API key → Silent Leaflet fallback
 
-## License
+#License
 
 MIT — Built for AI Bhoomi 2026
