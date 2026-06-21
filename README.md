@@ -74,4 +74,4 @@ All critical paths have graceful fallbacks:
 
 ## License
 
-MIT — Built for AI Bhoomi 2025
+MIT — Built for AI Bhoomi 2026
